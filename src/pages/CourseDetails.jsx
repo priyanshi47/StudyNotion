@@ -15,6 +15,9 @@ import { fetchCourseDetails } from "../services/operations/courseDetailsAPI"
 import { BuyCourse } from "../services/operations/studentFeaturesAPI"
 import GetAvgRating from "../utils/avgRating"
 import Error from "./Error"
+import { addToCart } from "../slices/cartSlice"
+import toast from "react-hot-toast"
+import { ACCOUNT_TYPE } from "../utils/constants"
 
 function CourseDetails() {
   const { user } = useSelector((state) => state.profile)
@@ -24,6 +27,7 @@ function CourseDetails() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+
   // Getting courseId from url parameter
   const { courseId } = useParams()
   // console.log(`course id: ${courseId}`)
@@ -31,6 +35,9 @@ function CourseDetails() {
   // Declear a state to save the course details
   const [response, setResponse] = useState(null)
   const [confirmationModal, setConfirmationModal] = useState(null)
+
+ 
+
   useEffect(() => {
     // Calling fetchCourseDetails fucntion to fetch the details
     ;(async () => {
@@ -125,6 +132,26 @@ function CourseDetails() {
     )
   }
 
+  const handleAddToCart = () => {
+    if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+      toast.error("You are an Instructor. You can't buy a course.")
+      return
+    }
+    if (token) {
+      dispatch(addToCart(response.data?.courseDetails))
+      return
+    }
+    setConfirmationModal({
+      text1: "You are not logged in!",
+      text2: "Please login to add To Cart",
+      btn1Text: "Login",
+      btn2Text: "Cancel",
+      btn1Handler: () => navigate("/login"),
+      btn2Handler: () => setConfirmationModal(null),
+    })
+  }
+
+
   return (
     <>
       <div className={`relative w-full bg-richblack-800`}>
@@ -177,7 +204,7 @@ function CourseDetails() {
               <button className="yellowButton" onClick={handleBuyCourse}>
                 Buy Now
               </button>
-              <button className="blackButton">Add to Cart</button>
+              <button className="blackButton" onClick={handleAddToCart} >Add to Cart</button>
             </div>
           </div>
           {/* Courses Card */}
@@ -239,7 +266,7 @@ function CourseDetails() {
 
             {/* Author Details */}
             <div className="mb-12 py-4">
-              <p className="text-[28px] font-semibold">Author</p>
+              <p className="text-[28px]  font-semibold">Author</p>
               <div className="flex items-center gap-4 py-4">
                 <img
                   src={

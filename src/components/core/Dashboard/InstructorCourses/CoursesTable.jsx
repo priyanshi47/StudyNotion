@@ -117,6 +117,7 @@ export default function CoursesTable({ courses, setCourses }) {
                 </Td>
                 <Td className="text-sm font-medium text-richblack-100 ">
                   <button
+                  // loading ki value true hogi tsb disabled rhega i.e disabled = true if loading is true
                     disabled={loading}
                     onClick={() => {
                       navigate(`/dashboard/edit-course/${course._id}`)

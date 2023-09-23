@@ -8,6 +8,8 @@ import { logout } from "../../../services/operations/authAPI"
 import ConfirmationModal from "../../Common/ConfirmationModal"
 import SidebarLink from "./SidebarLink"
 
+
+
 export default function Sidebar() {
   const { user, loading: profileLoading } = useSelector(
     (state) => state.profile
@@ -17,6 +19,9 @@ export default function Sidebar() {
   const navigate = useNavigate()
   // to keep track of confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(null)
+
+ 
+  
 
   if (profileLoading || authLoading) {
     return (
@@ -28,7 +33,9 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10">
+      <div className={` h-[calc(100vh-3.5rem)] min-w-[220px] flex-col flex-wrap border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10 transition-[1.3s] `} >
+     
+     
         <div className="flex flex-col">
           {sidebarLinks.map((link) => {
             if (link.type && user?.accountType !== link.type) return null
@@ -64,6 +71,8 @@ export default function Sidebar() {
         </div>
       </div>
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
+      
+     
     </>
   )
 }

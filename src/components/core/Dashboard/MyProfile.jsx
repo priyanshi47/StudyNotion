@@ -11,11 +11,12 @@ export default function MyProfile() {
 
   return (
     <>
-      <h1 className="mb-14 text-3xl font-medium text-richblack-5">
+      <h1 className="mb-14 text-3xl font-medium text-richblack-5 ">
         My Profile
       </h1>
-      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
-        <div className="flex items-center gap-x-4">
+     
+      <div className="flex  items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 ">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <img
             src={user?.image}
             alt={`profile-${user?.firstName}`}
@@ -73,8 +74,8 @@ export default function MyProfile() {
             <RiEditBoxLine />
           </IconBtn>
         </div>
-        <div className="flex max-w-[500px] justify-between">
-          <div className="flex flex-col gap-y-5">
+        <div className="flex max-w-[500px] justify-between flex-wrap">
+          <div className="flex flex-col gap-y-5 ">
             <div>
               <p className="mb-2 text-sm text-richblack-600">First Name</p>
               <p className="text-sm font-medium text-richblack-5">

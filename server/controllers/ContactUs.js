@@ -1,3 +1,4 @@
+const { default: toast } = require("react-hot-toast")
 const { contactUsEmail } = require("../mail/templates/contactFormRes")
 const mailSender = require("../utils/mailSender")
 
@@ -15,6 +16,8 @@ exports.contactUsController = async (req, res) => {
       success: true,
       message: "Email send successfully",
     })
+   
+
   } catch (error) {
     console.log("Error", error)
     console.log("Error message :", error.message)
@@ -23,4 +26,6 @@ exports.contactUsController = async (req, res) => {
       message: "Something went wrong...",
     })
   }
+
+
 }

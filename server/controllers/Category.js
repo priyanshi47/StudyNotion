@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose")
 const Category = require("../models/Category")
 
 function getRandomInt(max) {
@@ -30,7 +31,10 @@ exports.createCategory = async (req, res) => {
 
 exports.showAllCategories = async (req, res) => {
   try {
-    const allCategorys = await Category.find()
+    const allCategorys = await Category.find(
+      {}, 
+     
+    )
     res.status(200).json({
       success: true,
       data: allCategorys,
@@ -46,6 +50,7 @@ exports.showAllCategories = async (req, res) => {
 exports.categoryPageDetails = async (req, res) => {
   try {
     const { categoryId } = req.body
+    
 
     // Get courses for the specified category
     const selectedCategory = await Category.findById(categoryId)
@@ -92,6 +97,9 @@ exports.categoryPageDetails = async (req, res) => {
       .populate({
         path: "courses",
         match: { status: "Published" },
+        populate:{
+          path:"instructor"
+        }
       })
       .exec()
     const allCourses = allCategories.flatMap((category) => category.courses)

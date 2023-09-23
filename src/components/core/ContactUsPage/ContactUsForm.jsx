@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
+import toast from "react-hot-toast"
 
 import CountryCode from "../../../data/countrycode.json"
 import { apiConnector } from "../../../services/apiConnector"
@@ -25,6 +26,7 @@ const ContactUsForm = () => {
       )
       // console.log("Email Res - ", res)
       setLoading(false)
+      toast.success("Message recieved successfully!!");
     } catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
       setLoading(false)

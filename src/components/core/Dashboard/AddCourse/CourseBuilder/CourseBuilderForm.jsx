@@ -40,7 +40,7 @@ export default function CourseBuilderForm() {
 
     if (editSectionName) {
       result = await updateSection(
-        {
+        { 
           sectionName: data.sectionName,
           sectionId: editSectionName,
           courseId: course._id,

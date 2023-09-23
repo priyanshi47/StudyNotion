@@ -25,11 +25,11 @@ export default function RenderSteps() {
 
   return (
     <>
-      <div className="relative mb-2 flex w-full justify-center">
+      <div className="relative mb-2 flex w-full justify-center flex-wrap">
         {steps.map((item) => (
           <>
             <div
-              className="flex flex-col items-center "
+              className="flex flex-col flex-wrap items-center "
               key={item.id}
             >
               <button

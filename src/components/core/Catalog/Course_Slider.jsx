@@ -18,10 +18,17 @@ function Course_Slider({ Courses }) {
     <>
       {Courses?.length ? (
         <Swiper
-          slidesPerView={1}
+         style={{
+         "--swiper-pagination-color": "#FFFFFF",
+         "--swiper-pagination-bullet-inactive-color": "#999999",
+         "--swiper-pagination-bullet-inactive-opacity": "1",
+        "--swiper-pagination-bottom": "0" 
+         }}
+          slidesPerView={2}
           spaceBetween={25}
-          loop={true}
+          loop={false}
           modules={[FreeMode, Pagination]}
+          pagination={true}
           breakpoints={{
             1024: {
               slidesPerView: 3,
@@ -31,7 +38,7 @@ function Course_Slider({ Courses }) {
         >
           {Courses?.map((course, i) => (
             <SwiperSlide key={i}>
-              <Course_Card course={course} Height={"h-[250px]"} />
+              <Course_Card course={course} Width={"w-[44vw]"} />
             </SwiperSlide>
           ))}
         </Swiper>

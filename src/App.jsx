@@ -34,6 +34,9 @@ import VerifyEmail from "./pages/VerifyEmail"
 import ViewCourse from "./pages/ViewCourse"
 import { getUserDetails } from "./services/operations/profileAPI"
 import { ACCOUNT_TYPE } from "./utils/constants"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
+import Refunds from "./pages/Refunds"
+import Terms from "./pages/Terms"
 
 function App() {
   const dispatch = useDispatch()
@@ -151,6 +154,10 @@ function App() {
             </>
           )}
         </Route>
+
+        <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
+        <Route path="/refunds" element={<Refunds/>}/>
+        <Route path="/terms" element={<Terms/>}/>
 
         {/* 404 Page */}
         <Route path="*" element={<Error />} />
